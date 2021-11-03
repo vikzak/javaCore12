@@ -3,16 +3,16 @@ import java.util.Arrays;
 
 public class MyThread {
     private final Object mon = new Object();
-
     // первый вариант метода:
     // бежит по массиву и вычисляет значения
     public long var01 (float myArray[]){
-        long a = System.currentTimeMillis();
         for (int i = 0; i < myArray.length; i++){
             myArray[i] = 1f;
         }
         // добавляем формулу
         // arr[i] = (float)(arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+        // Для первого метода надо считать время только на цикл расчета:
+        long a = System.currentTimeMillis();
         for (int i = 0; i < myArray.length; i++) {
             myArray[i] = (float) (myArray[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
         }
@@ -21,11 +21,13 @@ public class MyThread {
     }
 
     public synchronized long var02 (float myArray[], int half, int size){
-        long a = System.currentTimeMillis();
+        // long a = System.currentTimeMillis();
         for (int i = 0; i < myArray.length; i++){
             myArray[i] = 1f;
         }
         // делим на 2 массива
+        // согласно заданию счетчик ставим на время разбивки массива на 2, просчета каждого из двух массивов и склейки.
+        long a = System.currentTimeMillis();
         float[] halfArr1 = Arrays.copyOfRange(myArray, 0, myArray.length/2);
         float[] halfArr2 = Arrays.copyOfRange(myArray, myArray.length/2, myArray.length);
 

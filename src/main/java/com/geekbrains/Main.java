@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args)  {
         float myArray[] = new float[SIZE];
         new Thread(()->
-                System.out.println("№1:Выполняем задание в 1 поток " +
+                System.out.println("№1:Выполняем задание в один поток " +
                         new MyThread().var01(myArray) + " мс")
         ).start();
         new Thread(()->
